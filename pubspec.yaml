@@ -2,7 +2,7 @@ name: flutter_miui
 description: Flutter package for using MIUI11 design Widget with Simple Animations which support Dialog,Button,TextField etc.
 version: 0.0.2
 author: laiiihz <laiiihz@outlook.com>
-homepage: https://github.com/laiiihz
+homepage: https://github.com/laiiihz/flutter_miui
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
