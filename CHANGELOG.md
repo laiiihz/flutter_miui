@@ -1,3 +1,7 @@
+## [0.0.6] - 2019.12.25
+
+* add example.
+
 ## [0.0.5] - 2020.02.05
 
 * [menu] use shape to change Material Menu Shape.
