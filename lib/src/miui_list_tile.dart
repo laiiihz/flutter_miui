@@ -1,49 +1,47 @@
 import 'package:flutter/material.dart';
 
-class MIUIListTile extends StatelessWidget {
-  MIUIListTile({
+class MIUIListTileTrailing extends StatelessWidget {
+  MIUIListTileTrailing({
     Key key,
-    this.title,
-    this.onPressed,
-    this.subTitle,
-    this.detail,
+    this.child,
   }) : super(key: key);
-  final Widget title;
-  final Widget subTitle;
-  final VoidCallback onPressed;
-  final Widget detail;
+  final Widget child;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: this.onPressed,
-      child: ListTile(
-        leading: Icon(Icons.add),
-        title: this.title,
-        subtitle: DefaultTextStyle(
-          style: TextStyle(
-            color: Colors.grey,
-          ),
-          child: this.subTitle,
-        ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            this.detail == null
-                ? SizedBox()
-                : DefaultTextStyle(
-              style: TextStyle(
-                color: Colors.grey,
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        this.child == null
+            ? SizedBox()
+            : DefaultTextStyle(
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+                child: this.child,
               ),
-              child: this.detail,
-            ),
-            SizedBox(width: 10),
-            Icon(
-              Icons.arrow_forward_ios,
-              size: 18,
-            ),
-          ],
+        SizedBox(width: 10),
+        Icon(
+          Icons.arrow_forward_ios,
+          size: 18,
         ),
+      ],
+    );
+  }
+}
+
+class MIUIListTileSubtitle extends StatelessWidget {
+  MIUIListTileSubtitle({
+    Key key,
+    @required this.child,
+  }) : super(key: key);
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTextStyle(
+      style: TextStyle(
+        color: Colors.grey,
       ),
+      child: this.child,
     );
   }
 }

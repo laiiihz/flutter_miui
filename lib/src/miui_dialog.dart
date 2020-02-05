@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_miui/flutter_miui.dart';
 
 showMIUIDialog({
   @required BuildContext context,
@@ -10,7 +11,7 @@ showMIUIDialog({
   bool dismissible = true,
   bool haveTextField = false,
   bool noPadding = false,
-  Color color = Colors.white,
+  Color color,
 }) {
   showGeneralDialog(
       context: context,
@@ -23,9 +24,7 @@ showMIUIDialog({
         return Align(
           alignment: Alignment.bottomCenter,
           child: Material(
-            color: MediaQuery.of(context).platformBrightness == Brightness.dark
-                ? Color(0xff222124)
-                : Colors.white,
+            color: color,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -43,6 +42,7 @@ showMIUIDialog({
                 children: <Widget>[
                   content,
                   AnimatedContainer(
+                    curve: Curves.easeInOutCubic,
                     duration: Duration(milliseconds: 200),
                     height: MediaQuery.of(context).viewInsets.bottom,
                   ),
@@ -101,33 +101,10 @@ class MIUIDialogButton extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      elevation: 0,
-      focusElevation: 0,
-      disabledElevation: 0,
-      highlightElevation: 0,
-      hoverElevation: 0,
-      color: MediaQuery.of(context).platformBrightness == Brightness.dark
-          ? Color(0xff2F2E31)
-          : Color(0xfff6f6f6),
-      focusColor: MediaQuery.of(context).platformBrightness == Brightness.dark
-          ? Color(0xff2F2F2F)
-          : Color(0xffe5e5e5),
-      splashColor: MediaQuery.of(context).platformBrightness == Brightness.dark
-          ? Color(0xff2F2F2F)
-          : Color(0xffe5e5e5),
-      onPressed: this.onPressed,
-      padding: EdgeInsets.only(top: 12, bottom: 12),
-      child: DefaultTextStyle(
-          style: TextStyle(
-            fontSize: 18,
-            color: colored
-                ? Colors.blue
-                : MediaQuery.of(context).platformBrightness == Brightness.dark
-                    ? Colors.white
-                    : Colors.black,
-          ),
-          child: this.child),
+    return MIUIButton(
+      child: child,
+      onPressed: onPressed,
+      colored: colored,
     );
   }
 }
@@ -189,13 +166,15 @@ showMIUIConfirmDialog({
   @required Widget child,
   @required String title,
   @required VoidCallback confirm,
-  @required String cancelString,
-  @required String confirmString,
+  String cancelString = '取消',
+  String confirmString = '确定',
   VoidCallback cancel,
+  Color color,
 }) {
   showMIUIDialog(
       context: context,
       dyOffset: 0.4,
+      color: color,
       content: MIUIConfirmContent(
         child: child,
         title: title,

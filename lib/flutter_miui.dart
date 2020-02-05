@@ -6,5 +6,3 @@ export 'src/miui_scroll_physics.dart';
 export 'src/miui_appbar.dart';
 export 'src/miui_button.dart';
 export 'src/miui_menu.dart';
-export 'src/miui_simple_text_field.dart';
-export 'src/miui_tag.dart';
