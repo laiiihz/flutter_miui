@@ -1,3 +1,6 @@
+import 'package:example/pages/button_view.dart';
+import 'package:example/pages/dialog_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_miui/flutter_miui.dart';
 
@@ -8,10 +11,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter MIUI demo',
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      home: Home(),
+      initialRoute: 'main',
+      routes: {
+        'main': (context) => Home(),
+        'button': (context) => ButtonView(),
+        'dialog': (context) => DialogView(),
+      },
     );
   }
 }
@@ -49,20 +57,27 @@ class _HomePageState extends State<HomeState> {
         physics: MIUIScrollPhysics(),
         children: <Widget>[
           MIUIButton(
+            child: Text('按钮'),
+            onPressed: () {
+              Navigator.of(context).pushNamed('button');
+            },
+          ),
+          MIUIButton(
+            child: Text('Dialog'),
+            onPressed: () {
+              Navigator.of(context).pushNamed('dialog');
+            },
+          ),
+          MIUIButton(
             child: Icon(Icons.add_shopping_cart),
             onPressed: () {
-              showMIUIDialog(
-                context: context,
-                dyOffset: 0.6,
-                content: Text('test'),
-                label: 'test',
-                color: Colors.pink,
-              );
               showMIUIConfirmDialog(
                 context: context,
                 child: TextField(),
                 title: 'test',
-                confirm: () {},
+                confirm: () {
+                  print(Theme.of(context).accentColor);
+                },
               );
             },
           ),

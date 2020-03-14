@@ -77,9 +77,7 @@ class MIUIDialogTitle extends StatelessWidget {
         child: Text(
           this.title,
           style: TextStyle(
-            color: MediaQuery.of(context).platformBrightness == Brightness.dark
-                ? Colors.white
-                : Colors.black,
+            color: Theme.of(context).textTheme.caption.color,
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
@@ -94,17 +92,14 @@ class MIUIDialogButton extends StatelessWidget {
     Key key,
     @required this.onPressed,
     @required this.child,
-    this.colored = false,
   }) : super(key: key);
   final VoidCallback onPressed;
-  final bool colored;
   final Widget child;
   @override
   Widget build(BuildContext context) {
     return MIUIButton(
       child: child,
       onPressed: onPressed,
-      colored: colored,
     );
   }
 }
@@ -146,11 +141,10 @@ class MIUIConfirmContent extends StatelessWidget {
                 child: Text(this.cancelString),
               ),
             ),
-            SizedBox(width: 25),
+            SizedBox(width: 10),
             Expanded(
               child: MIUIDialogButton(
                 onPressed: this.confirm,
-                colored: true,
                 child: Text(this.confirmString),
               ),
             ),
