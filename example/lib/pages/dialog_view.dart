@@ -1,3 +1,5 @@
+import 'package:example/markdown/markdown_config.dart';
+import 'package:example/markdown/markdown_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_miui/flutter_miui.dart';
 
@@ -10,7 +12,7 @@ class _DialogViewState extends State<DialogView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MIUIAppBar(title: 'Dialog Demo'),
+      appBar: MIUIAppBar(title: Text('对话框 Demo')),
       body: ListView(
         physics: MIUIScrollPhysics(),
         children: <Widget>[
@@ -20,7 +22,10 @@ class _DialogViewState extends State<DialogView> {
               showMIUIDialog(
                 context: context,
                 dyOffset: 0.5,
-                content: Text('test'),
+                content: DartMarkdown(
+                  data: MV.dialogStandard,
+                  context: context,
+                ),
                 label: 'test',
               );
             },
@@ -30,9 +35,27 @@ class _DialogViewState extends State<DialogView> {
             onPressed: () {
               showMIUIConfirmDialog(
                 context: context,
-                child: Text('test'),
+                child: DartMarkdown(
+                  data: MV.dialogConfirm,
+                  context: context,
+                ),
                 confirm: () {},
-                title: 'title',
+                title: 'Dialog Confirm',
+              );
+            },
+          ),
+          MIUIButton(
+            child: Text('Dialog Single Confirm'),
+            onPressed: () {
+              showMIUIConfirmDialog(
+                context: context,
+                single: true,
+                child: DartMarkdown(
+                  data: MV.dialogSingleConfirm,
+                  context: context,
+                ),
+                confirm: () {},
+                title: 'Dialog Confirm',
               );
             },
           ),
@@ -41,7 +64,10 @@ class _DialogViewState extends State<DialogView> {
             onPressed: () {
               showMIUIDialog(
                 context: context,
-                content: Text('DEMO'),
+                content: DartMarkdown(
+                  data: MV.dialogConfirm,
+                  context: context,
+                ),
                 dyOffset: 0.5,
                 label: 'demo',
                 color: Colors.blueAccent,

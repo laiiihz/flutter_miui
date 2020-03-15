@@ -113,6 +113,7 @@ class MIUIConfirmContent extends StatelessWidget {
     this.cancel,
     @required this.cancelString,
     @required this.confirmString,
+    this.single = false,
   }) : super(key: key);
   final Widget child;
   final String title;
@@ -120,6 +121,7 @@ class MIUIConfirmContent extends StatelessWidget {
   final VoidCallback cancel;
   final String cancelString;
   final String confirmString;
+  final bool single;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -132,20 +134,30 @@ class MIUIConfirmContent extends StatelessWidget {
         ),
         Row(
           children: <Widget>[
+            this.single
+                ? SizedBox()
+                : Expanded(
+                    child: MIUIDialogButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        if (this.cancel != null) this.cancel();
+                      },
+                      child: Text(this.cancelString),
+                    ),
+                  ),
+            SizedBox(width: this.single ? 0 : 10),
             Expanded(
               child: MIUIDialogButton(
                 onPressed: () {
                   Navigator.of(context).pop();
-                  if (this.cancel != null) this.cancel();
+                  if (this.confirm != null) this.confirm();
                 },
-                child: Text(this.cancelString),
-              ),
-            ),
-            SizedBox(width: 10),
-            Expanded(
-              child: MIUIDialogButton(
-                onPressed: this.confirm,
-                child: Text(this.confirmString),
+                child: Text(
+                  this.confirmString,
+                  style: TextStyle(
+                    color: Color(0xff179AF3),
+                  ),
+                ),
               ),
             ),
           ],
@@ -164,6 +176,7 @@ showMIUIConfirmDialog({
   String confirmString = '确定',
   VoidCallback cancel,
   Color color,
+  bool single = false,
 }) {
   showMIUIDialog(
       context: context,
@@ -176,6 +189,7 @@ showMIUIConfirmDialog({
         cancel: cancel,
         confirmString: confirmString,
         cancelString: cancelString,
+        single: single,
       ),
       label: '${Random().nextDouble()}');
 }

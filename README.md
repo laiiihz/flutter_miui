@@ -1,5 +1,6 @@
 # flutter_miui
-
+* its not an official package.
+* its a mi fan's MIUI style project made by flutter.
 A new Flutter package.
 
 ## Getting Started

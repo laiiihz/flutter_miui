@@ -1,3 +1,15 @@
+## [0.0.8] - 2020.3.15
+
+* [dialog] fix confirm dialog button color.
+* [textField] add textField.
+* [appBar] refactor appbar.
+
+## [0.0.7] - 2020.3.14
+
+* example update.
+* [dialog] fix title color.
+* [global] add global colors.
+
 ## [0.0.6] - 2019.12.25
 
 * add example.
