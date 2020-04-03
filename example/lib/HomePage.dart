@@ -1,3 +1,4 @@
+import 'package:example/pages/animated_text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_miui/flutter_miui.dart';
 import 'package:video_player/video_player.dart';
@@ -84,13 +85,6 @@ class _HomePageState extends State<HomePage> {
               Navigator.of(context).pushNamed('textfield');
             },
           ),
-          ListTile(
-            leading: Icon(Icons.add),
-            title: Text('test'),
-            onTap: () {},
-            subtitle: Text('test'),
-            trailing: MIUIListTileTrailing(child: Text('adawd')),
-          ),
           MIUIButton(
             onPressed: () {
               showMenu(
@@ -105,19 +99,15 @@ class _HomePageState extends State<HomePage> {
             },
             child: Text('show menu'),
           ),
-          SizedBox(
-            height: 20,
-          ),
-          Text(textEditingController.text),
-          SizedBox(
-            height: 20,
-          ),
-          TextField(),
-          SizedBox(
-            height: 20,
-          ),
-          MIUITextField(
-            context: context,
+          MIUIButton(
+            child: Text('动态数字'),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => AnimatedTextView(),
+                ),
+              );
+            },
           ),
         ],
       ),

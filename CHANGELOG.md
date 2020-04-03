@@ -1,3 +1,8 @@
+## [0.1.0] - 2020.4.3
+
+* [text] add animated number.
+* [appBar] add appbar example.
+
 ## [0.0.8] - 2020.3.15
 
 * [dialog] fix confirm dialog button color.
