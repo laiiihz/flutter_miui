@@ -68,5 +68,26 @@ MIUIButton(
   color: MIUIStateColor.warn,
 ),
 ```
+''';
+
+  static String appBar = '''
+  # AppBar Standard
+  ```dart
+  MIUIAppBar(
+    title: Text('应用栏 standard'),
+  ),
+  ```
+  # AppBar with Actions
+  ```dart
+  MIUIAppBar(
+    title: Text('应用栏 actions'),
+    actions: <Widget>[
+      IconButton(
+        icon: Icon(Icons.face),
+        onPressed: () {},
+      ),
+    ],
+  ),
+  ```
   ''';
 }
