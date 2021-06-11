@@ -68,6 +68,7 @@ class _MButtonState extends State<MButton> with SingleTickerProviderStateMixin {
           child: child,
         );
       },
+      //TODO add height,minWidth prop
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTapDown: (detail) => _animationController.forward(),
@@ -76,7 +77,10 @@ class _MButtonState extends State<MButton> with SingleTickerProviderStateMixin {
         onTap: widget.onPressed,
         child: Padding(
           padding: widget.padding,
-          child: widget.child,
+          child: DefaultTextStyle(
+            style: Theme.of(context).textTheme.subtitle2!,
+            child: widget.child,
+          ),
         ),
       ),
     );
