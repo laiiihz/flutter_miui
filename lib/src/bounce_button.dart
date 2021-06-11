@@ -1,6 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+///creates a MIUI BounceButton
+///
+///example see Settings>My Device
 class BounceButton extends StatefulWidget {
   ///The shape of the button's [Material].
   ///
@@ -11,10 +13,21 @@ class BounceButton extends StatefulWidget {
   ///Defaults to the value from the current [BounceButton.FLAT].
   final ShapeBorder shape;
   final EdgeInsets padding;
+
   final Widget child;
+
+  /// begin color of the button
   final Color startColor;
+
+  /// end color of the button
   final Color endColor;
+
+  /// end scale of the button
+  ///
+  /// Default to 0.9
   final double scale;
+
+  final VoidCallback? onPressed;
   BounceButton({
     Key? key,
     this.shape = BounceButton.FLAT,
@@ -23,6 +36,7 @@ class BounceButton extends StatefulWidget {
     this.startColor = const Color(0xFFDDDDDD),
     this.endColor = const Color(0xFFBBBBBB),
     this.scale = 0.9,
+    this.onPressed,
   }) : super(key: key);
 
   static const OUTLINE = const RoundedRectangleBorder(
@@ -121,6 +135,12 @@ class _BounceButtonState extends State<BounceButton>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _animationController,
@@ -144,6 +164,7 @@ class _BounceButtonState extends State<BounceButton>
         onTapCancel: () {
           onUp();
         },
+        onTap: widget.onPressed,
         child: Padding(
           padding: widget.padding,
           child: widget.child,

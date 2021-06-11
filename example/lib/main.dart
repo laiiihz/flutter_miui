@@ -51,7 +51,12 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            MButton(
+              child: Text('test'),
+              onPressed: () {},
+            ),
             BounceButton(
+              onPressed: () {},
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
